@@ -30,8 +30,8 @@ Production-ready Text-to-Speech API with voice cloning using ResembleAI's Chatte
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/chatterbox-runpod-api.git
-cd chatterbox-runpod-api
+git clone https://github.com/Aparna0112/Chatterbox-TTS.git
+cd Chatterbox-TTS
 ```
 
 ### 2. Deploy on RunPod
