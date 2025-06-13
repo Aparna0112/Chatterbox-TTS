@@ -1,0 +1,44 @@
+{
+  "name": "ChatterboxTTS Production API",
+  "description": "Production-ready TTS API with voice cloning using ResembleAI ChatterboxTTS",
+  "readme": "# ChatterboxTTS API\n\nProduction TTS API with custom voice cloning capabilities.\n\n## Endpoints\n- GET /voices - List voices\n- POST /voices - Create voice\n- DELETE /voices/{id} - Delete voice\n- POST /synthesize - Generate speech\n- GET /audio/{id} - Download audio\n\n## Usage\nAPI will be available on port 8000 after deployment.",
+  "dockerArgs": "",
+  "containerDiskInGb": 20,
+  "volumeInGb": 50,
+  "volumeMountPath": "/runpod-volume",
+  "ports": "8000/http",
+  "env": [
+    {
+      "key": "PORT",
+      "value": "8000"
+    },
+    {
+      "key": "PYTHONPATH",
+      "value": "/app"
+    },
+    {
+      "key": "CUDA_VISIBLE_DEVICES",
+      "value": "0"
+    }
+  ],
+  "category": "AI/ML",
+  "templateType": "container",
+  "runtimeInMin": 60,
+  "startJupyter": false,
+  "startSsh": false,
+  "imageName": "python:3.10-slim",
+  "setupCommands": [
+    "apt-get update",
+    "apt-get install -y git wget curl build-essential libsndfile1 ffmpeg python3-dev",
+    "git clone https://github.com/yourusername/chatterbox-runpod-api.git /app",
+    "cd /app",
+    "pip install -r requirements.txt",
+    "chmod +x setup_runpod.sh",
+    "./setup_runpod.sh --no-test"
+  ],
+  "runCommand": "cd /app && python main.py",
+  "advancedOptions": {
+    "idleTimeout": 300,
+    "shutdownTimeout": 60
+  }
+}
